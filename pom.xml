@@ -34,6 +34,11 @@
         <configuration>
 
           <image>
+
+            <env>
+              <BP_SPRING_CLOUD_BINDINGS_DISABLED>true</BP_SPRING_CLOUD_BINDINGS_DISABLED>
+              <BPL_SPRING_CLOUD_BINDINGS_DISABLED>true</BPL_SPRING_CLOUD_BINDINGS_DISABLED>
+            </env>
             <name>amittelang1976/new-${project.artifactId}</name>
             <builder>dashaun/builder:tiny</builder>
             <publish>true</publish>
