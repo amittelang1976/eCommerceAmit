@@ -187,36 +187,24 @@ services:
     ports:
       - "9411:9411"
 
-  ## Eureka Server
-  discovery-server:
-    image: discovery-server:1.0-SNAPSHOT
-    container_name: discovery-server
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - zipkin
-
   api-gateway:
-    image: api-gateway:1.0-SNAPSHOT
+    image: api-gateway
     container_name: api-gateway
     ports:
-      - "8181:8080"
+      - "9000:9000"
     expose:
-      - "8181"
+      - "9000"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY= TRACE
     depends_on:
       - zipkin
-      - discovery-server
       - keycloak
 
   ## Product-Service Docker Compose Config
   product-service:
     container_name: product-service
-    image: product-service:1.0-SNAPSHOT
+    image: amittelang1976/new-product-service
     depends_on:
       - mongo
       - api-gateway
